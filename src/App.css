@@ -127,7 +127,12 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 6% 5%;
-    margin: 5% auto;
+}
+
+@media all and (max-width: 48em) {
+    .content-wrapper {
+        margin: 5% auto;
+    }
 }
 
 .description {
