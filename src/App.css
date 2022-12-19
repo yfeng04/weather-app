@@ -129,7 +129,7 @@ body {
     padding: 6% 5%;
 }
 
-@media all and (max-width: 48em) {
+@media all and (max-width: 62em) {
     .content-wrapper {
         margin: 5% auto;
     }
@@ -203,6 +203,16 @@ body {
     display: flex;
     align-items: center;
     font-size: .9rem;
+    transition: all .4s ease-in-out;
+}
+
+.button-row:hover, .button-row:focus, .button-row.active {
+    color: grey;
+}
+
+.message {
+    color: grey;
+    font-weight: 500;
 }
 
 @media only screen and (min-width: 62em) {

@@ -2,17 +2,18 @@ import React from 'react';
 import moment from 'moment';
 import {Icon} from 'semantic-ui-react';
 
-function Weather({weatherData, getLocation}) {
+function Weather({weatherData, getLocation, message, active}) {
     
     const iconUrl = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
     
     return (
     <div className="current-weather">
        <div className='weather-info-1'>
-            <div className='button-row' onClick={getLocation}>
+            <div className={active ? 'button-row active' : 'button-row'} onClick={getLocation}>
                 <Icon size="small" name='location arrow'/>
                 <span>Get Current Location</span>
             </div>
+            <p className='message'>{message}</p>
             <p className="location">{weatherData.name}, {weatherData.sys.country}</p>
             <p className="day">{moment().format('hh:mm A - dddd MMM D, YYYY')}</p>
             <img className="weather-icon" src= {iconUrl} alt="Weather Icon"/>

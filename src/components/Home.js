@@ -20,14 +20,29 @@ function Home() {
     const [error, setError] = useState(null);
     const [query, setQuery] = useState('Clouds');
     const [background, setBackground] = useState('');
+    const [message, setMessage] = useState('');
+    const [active, setActive] = useState(false);
     //const client = createClient(PEXELS_KEY);
-    
+
     const getLocation = () => {
+      setMessage('Loading..')
+      setActive(true);
       navigator.geolocation.getCurrentPosition(function(position) {
         setLat(position.coords.latitude);
         setLong(position.coords.longitude);
+        setActive(false);
+        setMessage('');
         console.log(lat, long);
-      });
+      }, function(error) {
+        if (error.code === error.PERMISSION_DENIED)
+          setMessage('Location access is denied.')
+          setActive(false);
+        }
+      );
+    }
+
+    if (lat == null || long == null) {
+      setMessage('Location is not available.')
     }
 
     useEffect(() => { 
@@ -101,7 +116,7 @@ function Home() {
           // <div className="wrapper" style={{ backgroundImage: `url(https://source.unsplash.com/random/?snow/1920x1080` }}>
           <div className="wrapper" style={{ backgroundImage: `url(${background})`}}>
             <div className='container content-wrapper'>
-              <Weather weatherData={weatherData} getLocation={getLocation}/> 
+              <Weather weatherData={weatherData} getLocation={getLocation} message={message} active={active}/> 
               <Forecast forecastData={forecastData}/>
             </div>
           </div>
