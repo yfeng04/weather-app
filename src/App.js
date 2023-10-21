@@ -5,7 +5,7 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <Router basename='/weather-app'>
+    <Router basename='/'>
       <Routes>
         <Route path='/' exact element={<Home />}/>
       </Routes>
